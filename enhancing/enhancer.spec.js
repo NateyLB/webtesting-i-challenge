@@ -8,6 +8,7 @@ const staff = {name:"Staff", durability: 50, enhancement: 15}
 const dagger = {name:"Dagger", durability: 9, enhancement: 15}
 const knife = {name:"Knife", durability: 4, enhancement:14}
 const crossbow = {name:"Crossbow", durability: 9, enhancement: 20}
+const claymore = {name:"Claymore", durability: 75, enhancement:0}
 
 describe("repair", ()=>{
     it("should have a durability of 100", ()=>{
@@ -47,5 +48,15 @@ describe("fail", ()=>{
 
     it("should decrease durabilty to 0 and decrease enhancement by -1", ()=>{
         expect(enhancer.fail(crossbow)).toMatchObject({name:"Crossbow", durability:0, enhancement: 19})
+    })
+})
+
+describe("get", ()=>{
+    it("should not do anything to name", ()=>{
+        expect(enhancer.get(claymore)).toMatchObject({name:"Claymore", durability: 75, enhancement:0})
+    })
+
+    it("should append [+20] to name", ()=>{
+        expect(enhancer.get(crossbow)).toMatchObject({name: "[+20] Crossbow", durability:9, enhancement: 20})
     })
 })

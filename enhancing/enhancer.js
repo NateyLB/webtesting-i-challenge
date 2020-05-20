@@ -6,11 +6,7 @@ module.exports = {
 };
 
 function succeed(item) {
-  if(item.enhancement < 20){
-    return { ...item, enhancement: item.enhancement + 1 };
-  } else{
-    return {...item}
-  }
+    return { ...item, enhancement: item.enhancement < 20 ? item.enhancement + 1 : 20};
 }
 
 function fail(item) {
@@ -29,5 +25,5 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  return { ...item, name: item.enhancement > 0? `[+${item.enhancement}] ${item.name}`: item.name };
 }
